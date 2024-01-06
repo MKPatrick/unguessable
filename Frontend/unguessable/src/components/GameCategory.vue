@@ -30,12 +30,10 @@ fontweight.value=200;
 <template>
 <div @click="OnCheckButton" class="card shadow-lg">
   <div class="selectedplaceholder" >
-    <span v-if="isSelected">✅</span>
-
-  
+    <span  v-if="isSelected">✅</span>
   </div>
 
-<img   :src="ImageURL" class="img-card mt-3" />
+<img   :src="ImageURL" class="img-card" />
 <p class="text-center headline mt-1">
 
 <span>  {{ title }} </span>
@@ -49,16 +47,16 @@ fontweight.value=200;
 
 .img-card {
       width: 100%;
-    height: 15vw;
     object-fit: cover;
     }
+
 
 
 .card
 {
   background-color: #272C3A;
   border-radius: 5px;
- max-height: 35vh;
+
 font-size: small;
   width: 100%;
 }
@@ -66,13 +64,19 @@ font-size: small;
     /* Make sure the image inside the card body takes up 100% of the height */
 .selectedplaceholder
 {
-  display: block;
-  height: 15px;
+  position: absolute;
+  z-index: 100;
+  display:inline;
+  height: 12px;
 }
 
 .headline
 {
-  
+  position: absolute;
+  bottom: 0;
+  margin: auto;
+  text-align: center;
+  width: 100%;
   font-weight: v-bind('fontweight');
 }
 

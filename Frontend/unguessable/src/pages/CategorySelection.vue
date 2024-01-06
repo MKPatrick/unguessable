@@ -42,7 +42,7 @@ router.push({name:'Play', params: { categories:  JSON.stringify(selectedCategori
 
 onMounted(()=>
 {
-  axios.get('https://localhost:7049/api/Categories').then((resp)=>
+  axios.get('https://backend.unguessable.appgrove.xyz/api/Categories').then((resp)=>
   {
     const data:Array<Category>=resp.data;
       fetchedCategories.value=data;
@@ -52,24 +52,29 @@ onMounted(()=>
 
 </script>
 <template>
-    <div class="container" >
+    <div class="container mb-3" >
     
-      <h3 class="mt-3 ">Kategorien</h3>  
+      <h3 class="mt-3">Kategorien</h3>  
       <div class="row">
-        <div class="col-4 mt-2" v-for="item in fetchedCategories">
+        <div class="col-4 mt-2 category" v-for="item in fetchedCategories">
 <GameCategory @selectionChanged="OK" v-bind:CategoryID="item.id" v-bind:title="item.title" v-bind:ImageURL="item.imageUrl" />
 </div>
 </div>
   <!-- Sticky bottom button -->
   <span @click="StartGame" type="button" class="sticky-bottom-button isVisible">
-    <lottie-player style="width: 700px; height: 700px"   src="/playbutton.json" background="transparent" speed="1" direction="1" mode="normal" loop  autoplay></lottie-player>
+    <lottie-player  src="/playbutton.json" background="transparent" speed="1" direction="1" mode="normal" loop  autoplay></lottie-player>
   </span>
 
 </div>
 </template>
 
-<style>
+<style >
+.category{
 
+  font-family: 'Pacifico', cursive;
+  text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;
+
+}
 
 .sticky-bottom-button {
       position: fixed;
@@ -90,5 +95,6 @@ onMounted(()=>
   visibility: v-bind('isvisible');
 }
   
+
 
 </style>

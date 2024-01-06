@@ -3,20 +3,40 @@
 
 </script>
 <template>
-<div class="container">
+<div class="container page">
   <div class="row">
-    <div class="col-12">
+<h1 class="headlineStart text-center mt-3">Unguessable</h1>
+    <div class="col-12 mt-3">
         <router-link to="/CategorySelection">
-      <button type="button" class="btn btn-primary btn-block mb-2">Button 1</button>
+      <button type="button" class="btn btn-primary btn-block mb-2">Zu den Kategorien</button>
     </router-link>
-      <button type="button" class="btn btn-secondary btn-block">Button 2</button>
+      <button type="button" class="btn btn-secondary btn-block">Wie spielt man?</button>
     </div>
   </div>
+
 </div>
 
 
-
+<img class="bottomImage img-fluid" src="/guys.png" />
 
 
 </template>
 
+<style>
+
+.headlineStart
+{
+  font-family: 'Rock Salt', cursive;
+
+
+}
+
+.bottomImage {
+            position: fixed;
+            bottom: -50px;
+            left: 30;
+            width: 100%;
+            z-index: -1; /* To place it behind the content */
+        }
+        
+        </style>

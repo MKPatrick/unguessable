@@ -43,7 +43,7 @@ let wordsCorrect:Array<Word>=[];
 
 onMounted(()=>
 {
-  axios.post('https://localhost:7049/api/Words/WordsByCategory', {
+  axios.post('https://backend.unguessable.appgrove.xyz/api/Words/WordsByCategory', {
     categoriesID: selectedCategories.value,
 }).then((resp)=>
 {
