@@ -17,7 +17,7 @@ const audioCorrect = new Audio('/ok.wav');
 const audioNotCorrect = new Audio('/fail.mp3');
 const countdown = new Audio('/countdown.mp3');
 
-const gameTimer:Ref<number>=ref(10);
+const gameTimer:Ref<number>=ref(120);
 const gameTimerTrigger:Ref<boolean>=ref(false);
 const words:Ref<Word[]>=ref([]);
 const currentWord:Ref<Word>=ref(new Word());
@@ -82,14 +82,14 @@ if(guessState.value===GuessState.Unknown)
   wordsCorrect.push(currentWord.value);
   audioCorrect.play();
   guessState.value=GuessState.Guessed;
-  setTimeout(NextWord, 1500);
+  setTimeout(NextWord, 1300);
 }
 else if(event.gamma<64 && event.gamma>20)
 {
   wordsIncorrect.push(currentWord.value);
   audioNotCorrect.play();
   guessState.value=GuessState.NotGuessed;
-  setTimeout(NextWord, 2100);
+  setTimeout(NextWord, 1300);
 }
 
 
@@ -126,7 +126,7 @@ function NextWord()
 
 
 <div v-if="state==GameState.Started">
-<WordGuessCard  v-if="guessState==GuessState.Unknown" :word="currentWord?.word" :wordForbidden1="currentWord.wordForbidden1" :wordForbidden2="currentWord.wordForbidden1" :wordForbidden3="currentWord.wordForbidden3" />
+<WordGuessCard  v-if="guessState==GuessState.Unknown" :word="currentWord?.word" :wordForbidden1="currentWord.wordForbidden1" :wordForbidden2="currentWord.wordForbidden2" :wordForbidden3="currentWord.wordForbidden3" />
 <Lose  v-if="guessState==GuessState.NotGuessed" />
 <Success  v-if="guessState==GuessState.Guessed" />
 </div>
@@ -155,7 +155,7 @@ function NextWord()
 {
   position: absolute;
   top: 45%;
-  left:30px;
+  left:15px;
   display: flex;
   justify-content: center;
   align-items: center;

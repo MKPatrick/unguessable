@@ -3,7 +3,7 @@ import { ref } from 'vue';
 
 
 const isSelected=ref(false);
-const fontweight=ref(200);
+const grayScaleFactor=ref(1);
 const props = defineProps({
   CategoryID:Number,
   title: String,
@@ -20,9 +20,9 @@ function OnCheckButton()
 
   isSelected.value=!isSelected.value;
   if(isSelected.value)
-  fontweight.value=450;
+  grayScaleFactor.value=0;
 else
-fontweight.value=200;
+grayScaleFactor.value=1;
   emit("selectionChanged",isSelected.value,props.CategoryID!);
 }
 
@@ -48,6 +48,7 @@ fontweight.value=200;
 .img-card {
       width: 100%;
     object-fit: cover;
+    filter: grayscale( v-bind('grayScaleFactor'));
     }
 
 
@@ -77,7 +78,7 @@ font-size: small;
   margin: auto;
   text-align: center;
   width: 100%;
-  font-weight: v-bind('fontweight');
+
 }
 
 

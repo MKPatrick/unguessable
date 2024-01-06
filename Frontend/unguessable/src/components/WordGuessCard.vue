@@ -10,6 +10,7 @@ const props = defineProps({
 
 </script>
 <template>
+  <div class="mainCard">
 <h1>{{ word }}</h1>
 <br/>
 <br/>
@@ -28,4 +29,13 @@ const props = defineProps({
 </div>
 
 </div>
+</div>
 </template>
+
+<style>
+
+.mainCard
+{
+  width: 90vh;
+}
+</style>

@@ -9,25 +9,25 @@ defineProps({
 
 </script>
 <template>
-  <div class="container text-center">
-   <div class="row">
-    <div class="col-6">
+<div class="container mt-3">
+<h3 class="text-center mt-3">Hier die Übersicht deiner Wörter</h3>
     <div class="text-center">
-<li class="text-success" v-for="item in wordsCorrect">
-  {{ item.Word }}
-</li>
-</div>
-<div class="col-6">
-<li class="text-danger" v-for="item in wordsIncorrect">
-  {{ item.Word }}
-</li>
-</div>
-</div>
+<p class="text-success" v-for="item in wordsCorrect">
+  {{ item.word }}
+</p>
+<p class="text-danger" v-for="item in wordsIncorrect">
+  {{ item.word }}
+</p>
 
 <router-link to="/CategorySelection">
-    <button class="btn btn-primary">Zurück zur Kategorien auswahl</button>
+    <button class="btn btn-primary">Zurück zu den Kategorien</button>
     </router-link>
 
 </div>
 </div>
 </template>
+
+<style>
+
+
+</style>
