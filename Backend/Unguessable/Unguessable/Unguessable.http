@@ -1,0 +1,6 @@
+@Unguessable_HostAddress = http://localhost:5199
+
+GET {{Unguessable_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

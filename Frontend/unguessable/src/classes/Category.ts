@@ -1,6 +1,6 @@
 export class Category
 {
-    ID!:number;
+    id!:number;
     title!: string;
-    ImageURL!:string; 
+    imageUrl!:string; 
 }

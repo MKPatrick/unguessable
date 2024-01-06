@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import { Ref, computed, ref } from 'vue';
+import { Ref, computed, onMounted, ref } from 'vue';
 import { useRouter } from 'vue-router'
+import axios from 'axios'
 import {Category} from '../classes/Category.ts';
 import GameCategory from '../components/GameCategory.vue';
 const fetchedCategories:Ref<Category[]>=ref([]);
@@ -39,7 +40,15 @@ router.push({name:'Play', params: { categories:  JSON.stringify(selectedCategori
 }
 
 
-
+onMounted(()=>
+{
+  axios.get('https://localhost:7049/api/Categories').then((resp)=>
+  {
+    const data:Array<Category>=resp.data;
+      fetchedCategories.value=data;
+      console.table(fetchedCategories.value);
+  });
+});
 
 </script>
 <template>
@@ -48,7 +57,7 @@ router.push({name:'Play', params: { categories:  JSON.stringify(selectedCategori
       <h3 class="mt-3 ">Kategorien</h3>  
       <div class="row">
         <div class="col-4 mt-2" v-for="item in fetchedCategories">
-<GameCategory @selectionChanged="OK" v-bind:CategoryID="item.ID" v-bind:title="item.title" v-bind:ImageURL="item.ImageURL" />
+<GameCategory @selectionChanged="OK" v-bind:CategoryID="item.id" v-bind:title="item.title" v-bind:ImageURL="item.imageUrl" />
 </div>
 </div>
   <!-- Sticky bottom button -->
