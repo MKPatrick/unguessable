@@ -10,6 +10,7 @@ import WordGuessCard from '../components/WordGuessCard.vue';
 import Success from '../components/Success.vue';
 import Lose from '../components/Lose.vue';
 import Finish from '../components/Finish.vue';
+import axios from 'axios';
 const route = useRoute();
 
 const audioCorrect = new Audio('/ok.wav'); 
@@ -31,16 +32,6 @@ let wordsIncorrect:Array<Word>=[];
 let wordsCorrect:Array<Word>=[];
  
 
-  for (let i = 0; i < 300; i++) {
-let word:Word= new Word();
-word.ID=1;
-word.CategoryID=1;
-word.Word="test"+i.toString();
-word.WordForbidden1="test1"+i.toString();
-word.WordForbidden2="test2"+i.toString();
-word.WordForbidden3="test3"+i.toString();
-words.value.push(word);
-}
 
  function PreloadTimerFinished()
 {
@@ -52,6 +43,14 @@ words.value.push(word);
 
 onMounted(()=>
 {
+  axios.post('https://localhost:7049/api/Words/WordsByCategory', {
+    categoriesID: selectedCategories.value,
+}).then((resp)=>
+{
+const data:Array<Word>=resp.data
+  words.value=data;
+
+});
   countdown.play();
 });
 
@@ -127,7 +126,7 @@ function NextWord()
 
 
 <div v-if="state==GameState.Started">
-<WordGuessCard  v-if="guessState==GuessState.Unknown" :word="currentWord?.Word" :wordForbidden1="currentWord.WordForbidden1" :wordForbidden2="currentWord.WordForbidden2" :wordForbidden3="currentWord.WordForbidden3" />
+<WordGuessCard  v-if="guessState==GuessState.Unknown" :word="currentWord?.word" :wordForbidden1="currentWord.wordForbidden1" :wordForbidden2="currentWord.wordForbidden1" :wordForbidden3="currentWord.wordForbidden3" />
 <Lose  v-if="guessState==GuessState.NotGuessed" />
 <Success  v-if="guessState==GuessState.Guessed" />
 </div>

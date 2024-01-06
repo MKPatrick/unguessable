@@ -1,9 +1,9 @@
 export class Word
 {
-    ID!:number;
-    CategoryID!: number;
-    Word!:string;
-    WordForbidden1!:string;
-    WordForbidden2!:string;
-    WordForbidden3!:string;
+    id!:number;
+    categoryID!: number;
+    word!:string;
+    wordForbidden1!:string;
+    wordForbidden2!:string;
+    wordForbidden3!:string;
 }
