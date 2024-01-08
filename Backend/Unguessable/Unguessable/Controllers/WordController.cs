@@ -25,7 +25,7 @@ namespace Unguessable.Controllers
 		[HttpPost("WordsByCategory")]
 		public async Task<ActionResult<IEnumerable<GetWordDTOResponse>>> WordsByCategory([FromBody] GetWordDTOResquest getWordDTOResquest)
 		{
-			return Ok(await wordService.GetWordsByCategories(getWordDTOResquest.categoriesID));
+			return Ok(await wordService.GetWordsByCategories(getWordDTOResquest.categoriesID,getWordDTOResquest.wordAmount));
 		}
 
 	}

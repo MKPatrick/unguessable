@@ -43,8 +43,17 @@ let wordsCorrect:Array<Word>=[];
 
 onMounted(()=>
 {
+  if (
+    DeviceMotionEvent &&
+    // @ts-ignore
+    typeof DeviceMotionEvent.requestPermission === "function"
+  ) {
+    // @ts-ignore
+    DeviceMotionEvent.requestPermission();
+  }
   axios.post('https://backend.unguessable.appgrove.xyz/api/Words/WordsByCategory', {
     categoriesID: selectedCategories.value,
+    wordAmount:60
 }).then((resp)=>
 {
 const data:Array<Word>=resp.data
@@ -52,6 +61,7 @@ const data:Array<Word>=resp.data
 
 });
   countdown.play();
+
 });
 
 onUnmounted(() => {

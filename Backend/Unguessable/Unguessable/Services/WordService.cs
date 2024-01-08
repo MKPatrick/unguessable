@@ -19,10 +19,10 @@ namespace Unguessable.Services
 			return wordRepository.GetAll().Adapt<List<GetWordDTOResponse>>();
 		}
 
-		public async Task<IEnumerable<GetWordDTOResponse>> GetWordsByCategories(int[] categorieIDS)
+		public async Task<IEnumerable<GetWordDTOResponse>> GetWordsByCategories(int[] categorieIDS, int amount)
 		{
 			IWordSearchStrategy wordSearchStrategy = new WordSearchStrategyCategories(categorieIDS);
-			return wordRepository.GetWordsByStrategy(wordSearchStrategy).Adapt<List<GetWordDTOResponse>>();
+			return wordRepository.GetWordsByStrategy(wordSearchStrategy, amount).Adapt<List<GetWordDTOResponse>>();
 		}
 
 	}
