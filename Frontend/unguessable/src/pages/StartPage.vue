@@ -10,7 +10,7 @@
         <router-link to="/CategorySelection">
       <button type="button" class="btn btn-primary btn-block mb-2">Zu den Kategorien</button>
     </router-link>
-      <button type="button" class="btn btn-secondary btn-block">Wie spielt man?</button>
+
     </div>
   </div>
 

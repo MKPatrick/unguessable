@@ -12,17 +12,20 @@ const selectedCategories:Ref<number[]>=ref([]);
   return selectedCategories.value.length > 0 ? "visible" : "hidden"
 })
 
-function OK(value:boolean,id:number)
+function SelectionChanged(value:boolean,id:number)
 {
-console.log(value + " "+id );
+
 if(value)
 {
     selectedCategories.value.push(id);
+    localStorage.selectedCategories=JSON.stringify(selectedCategories.value);
 }
 else{
+
     selectedCategories.value= selectedCategories.value.filter(num => num !== id);
+    localStorage.selectedCategories=JSON.stringify(selectedCategories.value);
 }
-console.log(selectedCategories.value);
+
 }
 
 function StartGame()
@@ -46,7 +49,27 @@ onMounted(()=>
   {
     const data:Array<Category>=resp.data;
       fetchedCategories.value=data;
-      console.table(fetchedCategories.value);
+      if(localStorage.selectedCategories)
+      {
+        
+        let numberArray = JSON.parse(localStorage.selectedCategories);
+        numberArray.forEach((val:number)=>{
+          selectedCategories.value.push(val);
+        });
+      
+        fetchedCategories.value.forEach((val:Category)=>
+        {
+     let oldCategories:number[]=   JSON.parse(localStorage.selectedCategories);
+   
+  if(oldCategories.indexOf(val.id)!=-1)
+{
+console.log(val.id);
+console.log(oldCategories);
+  val.selected=true;
+}
+
+        });
+      }
   });
 });
 
@@ -57,7 +80,7 @@ onMounted(()=>
       <h3 class="mt-3">Kategorien</h3>  
       <div class="row">
         <div class="col-4 mt-2 category" v-for="item in fetchedCategories">
-<GameCategory @selectionChanged="OK" v-bind:CategoryID="item.id" v-bind:title="item.title" v-bind:ImageURL="item.imageUrl" />
+<GameCategory v-bind:selected="item.selected" @selectionChanged="SelectionChanged" v-bind:CategoryID="item.id" v-bind:title="item.title" v-bind:ImageURL="item.imageUrl" />
 </div>
 </div>
   <!-- Sticky bottom button -->

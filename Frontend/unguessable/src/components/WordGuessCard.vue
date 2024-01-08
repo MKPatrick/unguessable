@@ -1,6 +1,6 @@
 <script setup lang="ts">
 
-const props = defineProps({
+defineProps({
   word:String,
   wordForbidden1: String,
   wordForbidden2: String,

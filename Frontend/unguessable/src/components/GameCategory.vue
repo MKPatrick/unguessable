@@ -1,19 +1,28 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { onMounted, ref } from 'vue';
 
 
-const isSelected=ref(false);
+
 const grayScaleFactor=ref(1);
 const props = defineProps({
   CategoryID:Number,
   title: String,
-  ImageURL: String
+  ImageURL: String,
+  selected: Boolean
 })
+const isSelected=ref(props.selected);
 
 const emit = defineEmits<{
   (e: 'selectionChanged', value: boolean, id:number ): void
 }>()
 
+onMounted(()=>
+{
+  if(isSelected.value)
+  grayScaleFactor.value=0;
+else
+grayScaleFactor.value=1;
+})
 
 function OnCheckButton()
 {
